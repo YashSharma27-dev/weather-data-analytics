@@ -5,7 +5,7 @@ spark = SparkSession.builder \
         .getOrCreate()
 
 hdfs_path = "hdfs://localhost:9000/weather/data/weather_data.csv"
-df = spark.read.option("header","true").option("inferSchema","true").csv(hdfs.path)
+df = spark.read.option("header","true").option("inferSchema","true").csv(hdfs_path)
 print("====== Weather Dataset Schema from HDFS ===")
 df.printSchema()
 print("====== Sample Weather Records === ") 
