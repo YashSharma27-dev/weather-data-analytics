@@ -1,4 +1,4 @@
-# 🌦️ Distributed Weather Data Analytics (Big Data Semester Project)
+# 🌦️ Distributed Weather Data Analytics 
 
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://python.org)
 [![Hadoop 3.x](https://img.shields.io/badge/Apache%20Hadoop-3.x-66CCFF?logo=apachehadoop&logoColor=black)](https://hadoop.apache.org/)
@@ -111,92 +111,8 @@ weather-data-analytics/
 
 ---
 
-## ⚡ Quick Start: Running the Project
 
-### 1. Installation
-Activate your virtual environment (`.venv`) and install dependencies:
-```bash
-pip install -r requirements.txt
-```
 
-### 2. Run Locally (Single Machine / Development Mode)
-You can run all components locally even without starting distributed daemons:
-
-1. **Start the Streaming Ingestion:**
-   ```bash
-   python streaming/weather_producer.py
-   # Or double-click: run_producer.bat
-   ```
-2. **Run PySpark Batch Analytics & MLlib Model:**
-   ```bash
-   python spark/weather_batch_analytics.py
-   python spark/weather_ml_model.py
-   # Or double-click: run_spark_batch.bat
-   ```
-3. **Launch the Streamlit Web UI:**
-   ```bash
-   streamlit run dashboard/app.py
-   # Or double-click: run_dashboard.bat
-   ```
-   Open `http://localhost:8501` in your browser.
-
----
-
-## 🚀 Running on the 3-Computer Cluster (Exam Demo)
-
-Follow this sequence across your 3 connected laptops:
-
-### Step 1: On Master Computer (`192.168.1.100`)
-```bash
-# 1. Start Hadoop HDFS & YARN
-start-dfs.sh && start-yarn.sh
-
-# 2. Start Kafka & Zookeeper
-$KAFKA_HOME/bin/zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.properties &
-$KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties &
-
-# 3. Create Kafka Topic
-bash kafka/create_topic.sh 192.168.1.100:9092
-
-# 4. Start Spark Master & Workers
-$SPARK_HOME/sbin/start-master.sh
-$SPARK_HOME/sbin/start-workers.sh
-
-# 5. Initialize HDFS and upload historical data
-python hadoop/hdfs_manager.py init hdfs://192.168.1.100:9000
-python hadoop/hdfs_manager.py upload data/weather_data.csv /weather/data/weather_data.csv
-
-# 6. Start the Kafka Weather Producer
-python streaming/weather_producer.py 192.168.1.100:9092
-
-# 7. Submit PySpark Streaming Job
-spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0 \
-             --master spark://192.168.1.100:7077 \
-             streaming/kafka_to_hdfs_stream.py 192.168.1.100:9092 hdfs://192.168.1.100:9000
-
-# 8. Start Streamlit UI (Accessible across the entire local network!)
-streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
-```
-
----
-
-## 🎓 What to Display on Each Screen for Examiners
-
-1. **Computer 1 (Master)**:
-   - Primary browser on **Streamlit UI** (`http://192.168.1.100:8501`), demonstrating the 5 interactive tabs:
-     * **Tab 1**: Live Kafka Stream monitor with auto-updating metrics and Plotly charts.
-     * **Tab 2**: PySpark HDFS analytics, temperature distribution box-plots, and correlation heatmap.
-     * **Tab 3**: Extreme weather alerts (heatwaves, storms) pinpointed on a global scatter-geo map.
-     * **Tab 4**: PySpark MLlib predictive sandbox — adjust sliders to predict temperature live!
-     * **Tab 5**: 3-Computer cluster topology status and live socket health probes.
-2. **Computer 2 (Worker 1)**:
-   - Open **Hadoop NameNode Web UI** (`http://192.168.1.100:9870`).
-   - Show `Live DataNodes = 2`, block replication factor of 2, and browse the HDFS filesystem at `/weather/streaming_output`.
-3. **Computer 3 (Worker 2)**:
-   - Open **Apache Spark Master UI** (`http://192.168.1.100:8080`).
-   - Show 2 active workers, 8 CPU cores, 6 GB cluster RAM, and active running streaming applications.
-
----
 
 ## 💡 Troubleshooting & Fallback
 - If the lab Wi-Fi has strict isolation preventing computers from talking to each other, use a **mobile phone hotspot** or spin up the instant simulated 3-node cluster using Docker:
