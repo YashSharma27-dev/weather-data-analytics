@@ -119,4 +119,4 @@ weather-data-analytics/
   ```bash
   cd docker && docker-compose up -d
   ```
-- Review [`docs/viva_presentation_guide.md`](docs/viva_presentation_guide.md) for expected questions from external examiners.
+
