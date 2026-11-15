@@ -1,122 +1,132 @@
-# 🌦️ Distributed Weather Data Analytics 
-
-[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://python.org)
-[![Hadoop 3.x](https://img.shields.io/badge/Apache%20Hadoop-3.x-66CCFF?logo=apachehadoop&logoColor=black)](https://hadoop.apache.org/)
-[![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.5-E25A1C?logo=apachespark&logoColor=white)](https://spark.apache.org/)
-[![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-Distributed-231F20?logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
-
-A complete, enterprise-grade distributed Big Data analytics pipeline for real-time and historical meteorological observations. Built for semester evaluations and configured to run across a **3-computer distributed cluster** (Master + 2 Workers) as well as standalone environments.
+# 🌦️ Distributed Weather Data Analytics Pipeline
+### Big Data Semester Project Report
 
 ---
 
-## 🏗️ System Architecture
+## 👥 Group Members & Project Details
 
-```
-[Open-Meteo REST API / Simulator]
-              │
-              ▼
-  [Kafka Streaming Producer]
-              │
-              ▼ (TCP :9092)
-   [Apache Kafka Broker] ──── (Topic: weather-stream, 3 Partitions, 2 Replicas)
-              │
-              ▼
- [PySpark Structured Streaming] ────► [Hadoop HDFS Lake] (hdfs://master:9000/weather/)
-  • 5-min Windowed Aggregations             │ (2x Replication across Worker 1 & Worker 2)
-  • Extreme Anomaly Alert Engine            ▼
-                                  [PySpark Batch & MLlib Engine]
-                                    • City Statistical Profiles
-                                    • Pearson Correlation Matrices
-                                    • Linear Regression Temperature Predictor
-                                            │
-                                            ▼
-                              [Interactive Streamlit Dashboard]
-                                • Live Kafka Stream Gauges
-                                • HDFS Analytics & Distributions
-                                • Anomaly Alerts & Geo-Map
-                                • ML Prediction Sandbox
-                                • 3-Node Cluster Health Monitor
-```
+| S.No | Student Name | Roll Number | Primary Contribution |
+| :---: | :--- | :--- | :--- |
+| 1 | **Yash Sharma** | 231210127 | Hadoop Cluster, HDFS Architecture & Kafka Ingestion |
+| 2 | **Tanmay bharadwaj** | 231210114 | Streamlit UI Dashboard & Visualization Engine |
+| 3 | **Sunny Kumar** | 231210107 | PySpark Distributed Batch Processing & Aggregations |
+| 4 | **Vedant dubey** | 231210119 | PySpark MLlib Predictive Modeling & Data Collection |
+
+- **Course:** Big Data Analytics / Distributed Systems
+- **Evaluator:** Kritika Gahlawat
+- **Repository URL:** https://github.com/YashSharma27-dev/weather-data-analytics
 
 ---
 
-## 🖥️ 3-Computer Cluster Deployment Layout
+## 1. Abstract & Executive Summary
 
-| Node Role | Machine | Default IP | Daemons Running | Web Consoles |
-| :--- | :--- | :--- | :--- | :--- |
-| **Master Node** | Computer 1 | `192.168.1.100` | NameNode, ResourceManager, Zookeeper, Kafka, Spark Master, Streamlit UI | • NameNode: `:9870`<br>• YARN: `:8088`<br>• Spark Master: `:8080`<br>• Streamlit: `:8501` |
-| **Worker Node 1** | Computer 2 | `192.168.1.101` | DataNode, NodeManager, Spark Worker 1 | • Spark Worker: `:8081` |
-| **Worker Node 2** | Computer 3 | `192.168.1.102` | DataNode, NodeManager, Spark Worker 2 | • Spark Worker: `:8081` |
+Modern meteorological networks produce high-velocity, high-volume sensor observations that require distributed ingestion and processing systems. This project presents an end-to-end distributed Big Data pipeline for real-time and historical weather data analysis. 
 
-> 📖 **Full 3-Computer Setup Guide**: See [`docs/cluster_setup_3_nodes.md`](docs/cluster_setup_3_nodes.md) for step-by-step IP networking, `/etc/hosts`, passwordless SSH, and cluster startup.
+The system leverages:
+1. **Apache Kafka** for decoupled, fault-tolerant message streaming across multiple worldwide and domestic cities.
+2. **PySpark Structured Streaming** for windowed stream transformations, watermark-driven event-time processing, and extreme weather anomaly detection.
+3. **Apache Hadoop (HDFS)** as a distributed, fault-tolerant data lake with configurable block replication.
+4. **PySpark Batch & MLlib** for distributed historical aggregations, correlation matrix computation, and multivariate regression modeling for temperature forecasting.
+5. **Streamlit & Plotly** for a real-time web dashboard displaying live streaming telemetry, interactive maps, and predictive sandboxes.
 
----
-
-## 📁 Repository Directory Structure
-
-```text
-weather-data-analytics/
-├── README.md                      # Master project documentation
-├── requirements.txt               # Python package dependencies
-│
-├── data/
-│   ├── weather_data.csv           # Master historical multi-city dataset (1200+ observations)
-│   ├── generate_dataset.py        # Realistic multi-city dataset generator
-│   └── stream_buffer.jsonl        # Sliding buffer for live UI stream ingestion
-│
-├── streaming/
-│   ├── weather_producer.py        # Real-time multi-city Kafka producer (API + simulation mode)
-│   └── kafka_to_hdfs_stream.py    # PySpark Structured Streaming consumer writing to HDFS Parquet
-│
-├── spark/
-│   ├── weather_analysis.py        # Basic HDFS PySpark verification script
-│   ├── weather_batch_analytics.py # PySpark batch analytics (city stats, correlations, diurnal curves)
-│   ├── weather_ml_model.py        # PySpark MLlib regression & classification models
-│   ├── README.md                  # Spark documentation
-│   └── conf/                      # Spark cluster templates (spark-env.sh, workers)
-│
-├── hadoop/
-│   ├── hdfs_manager.py            # HDFS CLI helper (init dirs, upload datasets, health checks)
-│   ├── README.md                  # Hadoop documentation
-│   └── conf/                      # Production cluster XML files (core-site, hdfs-site, yarn-site, workers)
-│
-├── kafka/
-│   ├── server.properties.template # Broker configuration for 3-node cluster
-│   ├── create_topic.sh / .bat     # Topic creation utility scripts
-│   ├── kafka_consumer_test.py     # Verification script to test stream delivery
-│   └── README.md                  # Kafka documentation
-│
-├── dashboard/
-│   ├── app.py                     # High-impact Streamlit Web Dashboard (5 Tabs)
-│   ├── utils.py                   # Cluster socket probes and data connectors
-│   └── README.md                  # UI documentation
-│
-├── app/
-│   └── app.py                     # Streamlit entry point redirect
-│
-├── docker/
-│   ├── docker-compose.yml         # 1-Click simulated 3-node cluster
-│   └── hadoop.env                 # Container environment parameters
-│
-├── docs/
-│   ├── architecture.md            # Detailed Big Data architecture & schemas
-│   ├── cluster_setup_3_nodes.md   # Step-by-step physical 3-computer cluster deployment
-│   └── viva_presentation_guide.md# Viva examination cheat sheet & Q&A
-│
-├── run_dashboard.bat / .sh        # 1-Click dashboard launcher
-├── run_producer.bat / .sh         # 1-Click streaming producer launcher
-└── run_spark_batch.bat / .sh      # 1-Click batch analytics launcher
-```
+The project is designed to run both on a single standalone machine and across a physical **multi-computer distributed cluster** (Master and Worker nodes).
 
 ---
 
+## 2. Problem Statement & Objectives
+
+### Problem Statement
+Traditional monolithic database systems struggle with concurrent, high-frequency time-series weather updates and complex historical aggregations. There is a need for a distributed framework capable of handling streaming ingestion, persistent block-level storage, and parallel machine learning over large atmospheric datasets.
+
+### Objectives
+- Ingest live meteorological parameters (temperature, humidity, wind speed, pressure, precipitation, and air quality) from the Open-Meteo REST API.
+- Buffer streaming data reliably using an Apache Kafka broker with multi-partition topic architecture.
+- Persist structured records into Hadoop Distributed File System (HDFS) with fault tolerance.
+- Execute PySpark distributed transformations to compute city-level metrics, diurnal cycles, and anomaly flags.
+- Train a machine learning model using PySpark MLlib to predict temperature based on atmospheric features.
+- Develop an interactive web interface for real-time monitoring and analytical exploration.
+
+---
+
+## 3. System Architecture & Tech Stack
+[Open-Meteo REST API / Telemetry Source] │ ▼ [Kafka Weather Producer] (streaming/weather_producer.py) │ ▼ (TCP Port :9092) [Apache Kafka Broker / Zookeeper] (Topic: weather-stream) │ ▼ [PySpark Structured Streaming] (streaming/kafka_to_hdfs_stream.py) ├── JSON Schema Validation & Event-Time Watermarking ├── 5-Minute Sliding Window Aggregations ├── Extreme Anomaly Alerts (Heatwaves, Storms) │ ├───► [Hadoop HDFS Lake] (hdfs://master:9000/weather/) │ └───► [PySpark Batch & MLlib Analytics Engine] (spark/) ├── City-level Descriptive Statistics (Mean, Min, Max, StdDev) ├── Meteorological Pearson Correlation Matrix └── Linear Regression & Random Forest Forecasting Model │ ▼ [Interactive Streamlit Dashboard] (dashboard/app.py)
+
+
+### Technology Stack
+- **Ingestion & Messaging:** Apache Kafka 3.x, Zookeeper
+- **Distributed Processing:** Apache Spark 3.5 / PySpark (Structured Streaming, Spark SQL, MLlib)
+- **Distributed Storage:** Apache Hadoop 3.x (HDFS, YARN)
+- **Frontend & Visualization:** Streamlit, Plotly Express, Plotly Graph Objects
+- **Language & Runtime:** Python 3.9+, OpenJDK 11 / 17
+
+---
+
+## 4. Cluster Deployment Architecture
+
+| Node Role | Machine | Default IP | Daemons / Services |
+| :--- | :--- | :--- | :--- |
+| **Master Node** | Laptop 1 | `192.168.1.100` | NameNode, ResourceManager, Zookeeper, Kafka Broker, Spark Master, Streamlit UI |
+| **Worker Node** | Laptop 2 | `192.168.1.101` | DataNode, NodeManager, Spark Worker |
+
+- **HDFS Replication:** Configured to `1` (for 1 worker) or `2` (for 2 workers) ensuring zero data loss upon single-node failure.
+- **Spark Resource Allocation:** Dynamically allocated executor cores and memory across active cluster workers.
+
+---
+
+## 5. Implementation Details
+
+### 5.1 Real-Time Ingestion (Kafka)
+The script `streaming/weather_producer.py` collects live weather updates for major metropolitan cities (Delhi, Mumbai, Bengaluru, Kolkata, Chennai, New York, London, Tokyo) every 2 seconds and publishes JSON messages to topic `weather-stream`.
+
+### 5.2 Distributed Storage (Hadoop HDFS)
+Raw and streaming datasets are stored in HDFS under `/weather/`:
+- `/weather/data/weather_data.csv`: Master historical lake dataset.
+- `/weather/streaming_output/`: Partitioned Parquet storage generated by PySpark streaming.
+- `/weather/checkpoint/`: Fault-recovery checkpointing for streaming state recovery.
+
+### 5.3 Distributed Analytics & Machine Learning (PySpark)
+1. **Batch Analytics (`spark/weather_batch_analytics.py`):**
+   - Distributed aggregations compute city-wise Mean, Standard Deviation, Min, Max, Heat Index, and AQI.
+   - Pearson correlation coefficients determine atmospheric dependencies (Temperature vs. Humidity, Wind vs. Pressure).
+   - Diurnal temperature curves map the 24-hour meteorological variations.
+2. **Machine Learning Model (`spark/weather_ml_model.py`):**
+   - **Features:** `humidity`, `wind_speed`, `pressure`, `hour`.
+   - **Pipeline:** `VectorAssembler` + `StandardScaler` + `LinearRegression`.
+   - **Performance:** Evaluated on test split producing RMSE, MAE, and $R^2$ scores.
+
+### 5.4 Web User Interface (Streamlit)
+The dashboard (`dashboard/app.py`) provides 5 dedicated tabs:
+1. **Real-Time Kafka Stream Monitor:** Live auto-updating telemetry table, temperature line graphs, and KPI metric dials.
+2. **HDFS & PySpark Analytics:** Historical comparative bar charts, quartile box-plots, and correlation heatmaps.
+3. **Extreme Weather Alerts:** Automated anomaly flags (Heatwave > 38°C, Storm > 25 km/h, Extreme Humidity > 85%) plotted on a geospatial map.
+4. **PySpark ML Weather Predictor:** Interactive sliders for real-time temperature and comfort index inference.
+5. **Cluster Topology Monitor:** Real-time port and daemon connectivity probe.
+
+---
+
+## 6. Project Images : 
+<img width="1917" height="920" alt="image" src="https://github.com/user-attachments/assets/c029e192-7824-4adc-9bf0-0a99afebcecb" />
+<img width="1522" height="642" alt="image" src="https://github.com/user-attachments/assets/53009fc4-6294-46ab-9b60-13e54ccb5db2" />
+<img width="1475" height="667" alt="image" src="https://github.com/user-attachments/assets/bce6eefe-83b8-475c-9960-098367989349" />
+<img width="1468" height="677" alt="image" src="https://github.com/user-attachments/assets/05a35074-436b-496f-b498-91376ba73e32" />
+<img width="1625" height="736" alt="image" src="https://github.com/user-attachments/assets/3fa7124e-d2cc-4e6f-a0e7-c75c79bf30a6" />
+<img width="1580" height="740" alt="image" src="https://github.com/user-attachments/assets/c67b2fb4-9034-4284-bd6a-2f9e09676109" />
+<img width="1596" height="587" alt="image" src="https://github.com/user-attachments/assets/98cf5451-147c-4143-87b6-caca1850cb5e" />
 
 
 
-## 💡 Troubleshooting & Fallback
-- If the lab Wi-Fi has strict isolation preventing computers from talking to each other, use a **mobile phone hotspot** or spin up the instant simulated 3-node cluster using Docker:
-  ```bash
-  cd docker && docker-compose up -d
-  ```
+
+
+## 7. Results & Key Findings
+Correlation: An inverse relationship is observed between daytime temperature and relative humidity, while temperature and heat index exhibit a positive correlation (
+𝑟
+≈
+0.98
+r≈0.98).
+Streaming Throughput: Apache Kafka safely buffered streaming data at sub-second latency with zero dropped messages.
+Predictive Accuracy: The PySpark regression pipeline effectively modeled diurnal temperature patterns based on atmospheric pressure and relative humidity.
+
+## 8. Conclusion
+
+This project successfully demonstrates an enterprise-grade Big Data pipeline integrating Apache Kafka, Apache Hadoop HDFS, Apache Spark, and Streamlit. The architecture proves that distributed streaming and analytical processing can provide scalable, fault-tolerant meteorological monitoring and forecasting.
 
