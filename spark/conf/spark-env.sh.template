@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Apache Spark Environment Configuration for 3-Computer Standalone Cluster
+# Place in $SPARK_HOME/conf/spark-env.sh on all 3 computers
+
+# Master Hostname or IP
+export SPARK_MASTER_HOST='master'
+export SPARK_MASTER_PORT=7077
+export SPARK_MASTER_WEBUI_PORT=8080
+
+# Worker Resource Allocations (adjust according to your laptop RAM/cores)
+export SPARK_WORKER_CORES=4
+export SPARK_WORKER_MEMORY=3g
+export SPARK_WORKER_PORT=7078
+export SPARK_WORKER_WEBUI_PORT=8081
+
+# Hadoop Configuration Directory integration
+export HADOOP_CONF_DIR="${HADOOP_HOME:-/opt/hadoop}/etc/hadoop"
+
+# Python executable to use
+export PYSPARK_PYTHON=python3
+export PYSPARK_DRIVER_PYTHON=python3

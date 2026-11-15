@@ -1,0 +1,618 @@
+{
+  "city_metrics": [
+    {
+      "city": "Bengaluru",
+      "total_observations": 120,
+      "avg_temp": 22.81,
+      "std_temp": 1.92,
+      "min_temp": 19.67,
+      "max_temp": 27.45,
+      "avg_humidity": 68.4,
+      "avg_wind_speed": 12.2,
+      "max_wind_speed": 24.5,
+      "avg_heat_index": 22.98,
+      "avg_aqi": 141.35
+    },
+    {
+      "city": "Chennai",
+      "total_observations": 120,
+      "avg_temp": 29.49,
+      "std_temp": 1.77,
+      "min_temp": 25.73,
+      "max_temp": 33.78,
+      "avg_humidity": 78.3,
+      "avg_wind_speed": 11.89,
+      "max_wind_speed": 26.55,
+      "avg_heat_index": 35.67,
+      "avg_aqi": 145.52
+    },
+    {
+      "city": "Delhi",
+      "total_observations": 120,
+      "avg_temp": 24.44,
+      "std_temp": 3.05,
+      "min_temp": 19.7,
+      "max_temp": 31.12,
+      "avg_humidity": 59.57,
+      "avg_wind_speed": 11.78,
+      "max_wind_speed": 24.72,
+      "avg_heat_index": 24.62,
+      "avg_aqi": 202.68
+    },
+    {
+      "city": "Kolkata",
+      "total_observations": 120,
+      "avg_temp": 27.01,
+      "std_temp": 2.15,
+      "min_temp": 22.95,
+      "max_temp": 31.99,
+      "avg_humidity": 78.53,
+      "avg_wind_speed": 12.73,
+      "max_wind_speed": 26.87,
+      "avg_heat_index": 29.5,
+      "avg_aqi": 237.84
+    },
+    {
+      "city": "London",
+      "total_observations": 120,
+      "avg_temp": 9.81,
+      "std_temp": 2.48,
+      "min_temp": 5.68,
+      "max_temp": 15.13,
+      "avg_humidity": 75.44,
+      "avg_wind_speed": 11.4,
+      "max_wind_speed": 25.21,
+      "avg_heat_index": 8.81,
+      "avg_aqi": 153.55
+    },
+    {
+      "city": "Mumbai",
+      "total_observations": 120,
+      "avg_temp": 28.32,
+      "std_temp": 1.78,
+      "min_temp": 24.94,
+      "max_temp": 32.56,
+      "avg_humidity": 81.8,
+      "avg_wind_speed": 11.38,
+      "max_wind_speed": 29.64,
+      "avg_heat_index": 33.17,
+      "avg_aqi": 149.1
+    },
+    {
+      "city": "New York",
+      "total_observations": 120,
+      "avg_temp": 12.18,
+      "std_temp": 3.72,
+      "min_temp": 7.1,
+      "max_temp": 19.66,
+      "avg_humidity": 65.93,
+      "avg_wind_speed": 12.57,
+      "max_wind_speed": 26.13,
+      "avg_heat_index": 11.18,
+      "avg_aqi": 142.96
+    },
+    {
+      "city": "Paris",
+      "total_observations": 120,
+      "avg_temp": 11.6,
+      "std_temp": 2.61,
+      "min_temp": 7.34,
+      "max_temp": 17.61,
+      "avg_humidity": 73.94,
+      "avg_wind_speed": 12.78,
+      "max_wind_speed": 30.47,
+      "avg_heat_index": 10.74,
+      "avg_aqi": 146.75
+    },
+    {
+      "city": "Sydney",
+      "total_observations": 120,
+      "avg_temp": 19.11,
+      "std_temp": 2.35,
+      "min_temp": 15.09,
+      "max_temp": 24.29,
+      "avg_humidity": 71.56,
+      "avg_wind_speed": 12.37,
+      "max_wind_speed": 27.33,
+      "avg_heat_index": 18.95,
+      "avg_aqi": 141.04
+    },
+    {
+      "city": "Tokyo",
+      "total_observations": 120,
+      "avg_temp": 14.43,
+      "std_temp": 2.86,
+      "min_temp": 10.06,
+      "max_temp": 20.5,
+      "avg_humidity": 68.19,
+      "avg_wind_speed": 11.59,
+      "max_wind_speed": 26.91,
+      "avg_heat_index": 13.71,
+      "avg_aqi": 142.38
+    }
+  ],
+  "anomaly_count": 181,
+  "sample_anomalies": [
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-16 21:12:26",
+      "temperature": "25.84",
+      "humidity": "88.9",
+      "wind_speed": "15.11",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-16 21:12:26",
+      "temperature": "25.99",
+      "humidity": "89.7",
+      "wind_speed": "2.64",
+      "precipitation": "4.0",
+      "weather_condition": "Light Rain"
+    },
+    {
+      "city": "London",
+      "timestamp": "2026-10-16 21:12:26",
+      "temperature": "9.39",
+      "humidity": "84.8",
+      "wind_speed": "15.18",
+      "precipitation": "13.4",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-17 03:12:26",
+      "temperature": "26.3",
+      "humidity": "87.7",
+      "wind_speed": "11.65",
+      "precipitation": "1.9",
+      "weather_condition": "Overcast"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-17 03:12:26",
+      "temperature": "25.76",
+      "humidity": "85.6",
+      "wind_speed": "5.0",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "London",
+      "timestamp": "2026-10-17 03:12:26",
+      "temperature": "8.83",
+      "humidity": "85.6",
+      "wind_speed": "18.01",
+      "precipitation": "12.7",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Sydney",
+      "timestamp": "2026-10-17 03:12:26",
+      "temperature": "18.12",
+      "humidity": "84.9",
+      "wind_speed": "4.22",
+      "precipitation": "21.8",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-17 09:12:26",
+      "temperature": "30.8",
+      "humidity": "85.9",
+      "wind_speed": "0.5",
+      "precipitation": "0.0",
+      "weather_condition": "Partly Cloudy"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-17 09:12:26",
+      "temperature": "31.44",
+      "humidity": "85.2",
+      "wind_speed": "19.21",
+      "precipitation": "19.9",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-17 21:12:26",
+      "temperature": "26.73",
+      "humidity": "86.0",
+      "wind_speed": "20.0",
+      "precipitation": "0.0",
+      "weather_condition": "Partly Cloudy"
+    },
+    {
+      "city": "London",
+      "timestamp": "2026-10-17 21:12:26",
+      "temperature": "7.52",
+      "humidity": "88.6",
+      "wind_speed": "4.08",
+      "precipitation": "13.0",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Paris",
+      "timestamp": "2026-10-17 21:12:26",
+      "temperature": "7.6",
+      "humidity": "87.1",
+      "wind_speed": "16.46",
+      "precipitation": "21.0",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-18 03:12:26",
+      "temperature": "25.59",
+      "humidity": "87.1",
+      "wind_speed": "9.6",
+      "precipitation": "14.4",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-18 21:12:26",
+      "temperature": "29.71",
+      "humidity": "80.4",
+      "wind_speed": "8.68",
+      "precipitation": "10.3",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-18 21:12:26",
+      "temperature": "26.99",
+      "humidity": "89.1",
+      "wind_speed": "3.62",
+      "precipitation": "2.4",
+      "weather_condition": "Partly Cloudy"
+    },
+    {
+      "city": "Paris",
+      "timestamp": "2026-10-18 21:12:26",
+      "temperature": "11.75",
+      "humidity": "82.0",
+      "wind_speed": "24.63",
+      "precipitation": "23.0",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-19 03:12:26",
+      "temperature": "29.16",
+      "humidity": "88.1",
+      "wind_speed": "9.92",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-19 03:12:26",
+      "temperature": "29.17",
+      "humidity": "82.2",
+      "wind_speed": "19.05",
+      "precipitation": "19.7",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Paris",
+      "timestamp": "2026-10-19 03:12:26",
+      "temperature": "7.52",
+      "humidity": "82.8",
+      "wind_speed": "12.53",
+      "precipitation": "17.0",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-19 21:12:26",
+      "temperature": "28.62",
+      "humidity": "93.9",
+      "wind_speed": "13.74",
+      "precipitation": "17.4",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "London",
+      "timestamp": "2026-10-19 21:12:26",
+      "temperature": "7.68",
+      "humidity": "89.1",
+      "wind_speed": "11.86",
+      "precipitation": "0.0",
+      "weather_condition": "Partly Cloudy"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-20 03:12:26",
+      "temperature": "28.4",
+      "humidity": "85.4",
+      "wind_speed": "6.42",
+      "precipitation": "5.3",
+      "weather_condition": "Light Rain"
+    },
+    {
+      "city": "Bengaluru",
+      "timestamp": "2026-10-20 03:12:26",
+      "temperature": "20.97",
+      "humidity": "80.8",
+      "wind_speed": "18.56",
+      "precipitation": "23.2",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-20 03:12:26",
+      "temperature": "25.94",
+      "humidity": "92.2",
+      "wind_speed": "10.27",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Paris",
+      "timestamp": "2026-10-20 03:12:26",
+      "temperature": "11.96",
+      "humidity": "85.7",
+      "wind_speed": "13.82",
+      "precipitation": "0.3",
+      "weather_condition": "Partly Cloudy"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-20 21:12:26",
+      "temperature": "28.06",
+      "humidity": "95.2",
+      "wind_speed": "18.03",
+      "precipitation": "0.7",
+      "weather_condition": "Overcast"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-21 03:12:26",
+      "temperature": "24.87",
+      "humidity": "91.1",
+      "wind_speed": "26.87",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-21 03:12:26",
+      "temperature": "28.71",
+      "humidity": "89.5",
+      "wind_speed": "12.3",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-21 09:12:26",
+      "temperature": "26.26",
+      "humidity": "88.2",
+      "wind_speed": "22.23",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-21 09:12:26",
+      "temperature": "27.9",
+      "humidity": "80.4",
+      "wind_speed": "17.74",
+      "precipitation": "24.1",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-21 21:12:26",
+      "temperature": "26.56",
+      "humidity": "88.3",
+      "wind_speed": "25.06",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-22 03:12:26",
+      "temperature": "26.19",
+      "humidity": "83.1",
+      "wind_speed": "7.99",
+      "precipitation": "12.2",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-22 03:12:26",
+      "temperature": "25.76",
+      "humidity": "86.9",
+      "wind_speed": "0.86",
+      "precipitation": "6.4",
+      "weather_condition": "Light Rain"
+    },
+    {
+      "city": "Paris",
+      "timestamp": "2026-10-22 03:12:26",
+      "temperature": "7.46",
+      "humidity": "85.7",
+      "wind_speed": "12.74",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-22 21:12:26",
+      "temperature": "28.28",
+      "humidity": "80.1",
+      "wind_speed": "21.18",
+      "precipitation": "16.7",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-22 21:12:26",
+      "temperature": "26.14",
+      "humidity": "88.7",
+      "wind_speed": "23.33",
+      "precipitation": "23.4",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-22 21:12:26",
+      "temperature": "29.42",
+      "humidity": "87.2",
+      "wind_speed": "3.25",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-23 03:12:26",
+      "temperature": "25.24",
+      "humidity": "88.0",
+      "wind_speed": "13.91",
+      "precipitation": "0.3",
+      "weather_condition": "Overcast"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-23 03:12:26",
+      "temperature": "24.57",
+      "humidity": "90.7",
+      "wind_speed": "16.81",
+      "precipitation": "8.7",
+      "weather_condition": "Light Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-23 21:12:26",
+      "temperature": "26.54",
+      "humidity": "87.6",
+      "wind_speed": "19.67",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-23 21:12:26",
+      "temperature": "24.02",
+      "humidity": "85.4",
+      "wind_speed": "18.0",
+      "precipitation": "7.7",
+      "weather_condition": "Light Rain"
+    },
+    {
+      "city": "London",
+      "timestamp": "2026-10-23 21:12:26",
+      "temperature": "7.62",
+      "humidity": "85.8",
+      "wind_speed": "3.89",
+      "precipitation": "19.0",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Paris",
+      "timestamp": "2026-10-23 21:12:26",
+      "temperature": "10.1",
+      "humidity": "86.4",
+      "wind_speed": "12.33",
+      "precipitation": "0.0",
+      "weather_condition": "Partly Cloudy"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-24 03:12:26",
+      "temperature": "26.16",
+      "humidity": "91.8",
+      "wind_speed": "14.29",
+      "precipitation": "24.9",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Chennai",
+      "timestamp": "2026-10-24 03:12:26",
+      "temperature": "29.7",
+      "humidity": "89.1",
+      "wind_speed": "5.59",
+      "precipitation": "1.7",
+      "weather_condition": "Partly Cloudy"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-24 21:12:26",
+      "temperature": "26.42",
+      "humidity": "94.5",
+      "wind_speed": "17.7",
+      "precipitation": "16.1",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-24 21:12:26",
+      "temperature": "25.91",
+      "humidity": "91.8",
+      "wind_speed": "24.54",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-25 03:12:26",
+      "temperature": "25.17",
+      "humidity": "94.5",
+      "wind_speed": "8.03",
+      "precipitation": "1.6",
+      "weather_condition": "Overcast"
+    },
+    {
+      "city": "Kolkata",
+      "timestamp": "2026-10-25 03:12:26",
+      "temperature": "26.48",
+      "humidity": "85.2",
+      "wind_speed": "20.2",
+      "precipitation": "21.4",
+      "weather_condition": "Heavy Rain"
+    },
+    {
+      "city": "Mumbai",
+      "timestamp": "2026-10-25 21:12:26",
+      "temperature": "25.48",
+      "humidity": "86.9",
+      "wind_speed": "8.05",
+      "precipitation": "0.0",
+      "weather_condition": "Clear"
+    }
+  ],
+  "correlations": {
+    "temp_vs_humidity": 0.0035,
+    "temp_vs_heat_index": 0.9816,
+    "wind_vs_pressure": -0.005
+  },
+  "hourly_trends": [
+    {
+      "hour": 3,
+      "avg_temp": 18.26,
+      "avg_humidity": 77.92,
+      "avg_wind_speed": 11.79
+    },
+    {
+      "hour": 9,
+      "avg_temp": 20.07,
+      "avg_humidity": 71.53,
+      "avg_wind_speed": 12.18
+    },
+    {
+      "hour": 15,
+      "avg_temp": 23.05,
+      "avg_humidity": 61.01,
+      "avg_wind_speed": 12.34
+    },
+    {
+      "hour": 21,
+      "avg_temp": 18.3,
+      "avg_humidity": 78.2,
+      "avg_wind_speed": 11.97
+    }
+  ]
+}

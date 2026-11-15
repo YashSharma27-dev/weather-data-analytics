@@ -1,0 +1,35 @@
+# Apache Kafka Broker Configuration for Multi-Node Cluster
+# Place this file in $KAFKA_HOME/config/server.properties
+
+# Unique broker ID (Set 0 for Master, 1 for Worker1, 2 for Worker2)
+broker.id=0
+
+# Hostname and port the broker binds to (replace master with actual hostname/IP)
+listeners=PLAINTEXT://0.0.0.0:9092
+advertised.listeners=PLAINTEXT://master:9092
+
+# Network & thread processing configurations
+num.network.threads=3
+num.io.threads=8
+socket.send.buffer.bytes=102400
+socket.receive.buffer.bytes=102400
+socket.request.max.bytes=104857600
+
+# Directory where Kafka log partitions are stored
+log.dirs=/tmp/kafka-logs
+
+# Default topic partitions and replication
+num.partitions=3
+default.replication.factor=2
+offsets.topic.replication.factor=1
+transaction.state.log.replication.factor=1
+transaction.state.log.min.isr=1
+
+# Log retention policy (7 days)
+log.retention.hours=168
+log.segment.bytes=1073741824
+log.retention.check.interval.ms=300000
+
+# Zookeeper connection (Running on Master computer)
+zookeeper.connect=master:2181
+zookeeper.connection.timeout.ms=18000

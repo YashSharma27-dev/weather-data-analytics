@@ -1,0 +1,4 @@
+# Hadoop Cluster Workers / Slaves
+# In a 3-computer cluster: Master is NameNode/ResourceManager, Workers are DataNodes/NodeManagers
+worker1
+worker2

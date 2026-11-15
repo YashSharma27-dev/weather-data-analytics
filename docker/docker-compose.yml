@@ -1,0 +1,159 @@
+version: '3.8'
+
+services:
+  # ==========================================================
+  # Node 1: Master (NameNode, ResourceManager, Zookeeper, Kafka, Spark Master)
+  # ==========================================================
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - bigdata-net
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    hostname: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - bigdata-net
+
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    hostname: master
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    environment:
+      - CLUSTER_NAME=weather-cluster
+    env_file:
+      - ./hadoop.env
+    networks:
+      - bigdata-net
+
+  resourcemanager:
+    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8
+    container_name: resourcemanager
+    hostname: resourcemanager
+    depends_on:
+      - namenode
+    ports:
+      - "8088:8088"
+    env_file:
+      - ./hadoop.env
+    networks:
+      - bigdata-net
+
+  spark-master:
+    image: bitnami/spark:3.5.0
+    container_name: spark-master
+    hostname: spark-master
+    ports:
+      - "7077:7077"
+      - "8080:8080"
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    networks:
+      - bigdata-net
+
+  # ==========================================================
+  # Node 2: Worker 1 (DataNode 1, NodeManager 1, Spark Worker 1)
+  # ==========================================================
+  datanode-1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode-1
+    hostname: worker1
+    depends_on:
+      - namenode
+    ports:
+      - "9864:9864"
+    env_file:
+      - ./hadoop.env
+    networks:
+      - bigdata-net
+
+  spark-worker-1:
+    image: bitnami/spark:3.5.0
+    container_name: spark-worker-1
+    hostname: spark-worker-1
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=2
+    networks:
+      - bigdata-net
+
+  # ==========================================================
+  # Node 3: Worker 2 (DataNode 2, NodeManager 2, Spark Worker 2)
+  # ==========================================================
+  datanode-2:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode-2
+    hostname: worker2
+    depends_on:
+      - namenode
+    ports:
+      - "9865:9864"
+    env_file:
+      - ./hadoop.env
+    networks:
+      - bigdata-net
+
+  spark-worker-2:
+    image: bitnami/spark:3.5.0
+    container_name: spark-worker-2
+    hostname: spark-worker-2
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=2
+    networks:
+      - bigdata-net
+
+  # ==========================================================
+  # Web Application: Streamlit UI Dashboard
+  # ==========================================================
+  dashboard:
+    image: python:3.11-slim
+    container_name: weather-dashboard
+    volumes:
+      - ..:/workspace
+    working_dir: /workspace
+    ports:
+      - "8501:8501"
+    command: >
+      bash -c "pip install -r requirements.txt &&
+               streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0"
+    networks:
+      - bigdata-net
+
+networks:
+  bigdata-net:
+    driver: bridge

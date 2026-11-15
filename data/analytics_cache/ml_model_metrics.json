@@ -1,0 +1,27 @@
+{
+  "engine": "Scikit-Learn Fallback (PySpark MLlib Architecture)",
+  "model_type": "Multivariate Linear Regression",
+  "target_variable": "temperature",
+  "feature_columns": [
+    "humidity",
+    "wind_speed",
+    "pressure",
+    "hour"
+  ],
+  "rmse": 7.3325,
+  "r2_score": -0.0002,
+  "mae": 6.2793,
+  "coefficients": {
+    "humidity": 0.0104,
+    "wind_speed": 0.0177,
+    "pressure": 0.043,
+    "hour": 0.0294
+  },
+  "intercept": -25.004,
+  "feature_importances": {
+    "humidity": 0.4024,
+    "wind_speed": 0.2409,
+    "pressure": 0.2444,
+    "hour": 0.1123
+  }
+}

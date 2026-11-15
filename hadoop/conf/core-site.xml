@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- Default File System URI: Points to NameNode on Master computer -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://master:9000</value>
+        <description>The name of the default file system. Change 'master' to your Master PC IP or hostname.</description>
+    </property>
+
+    <!-- Hadoop Temporary Directory for storage buffers -->
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/hadoop/hadoopdata/tmp</value>
+        <description>Base directory for temporary Hadoop data files.</description>
+    </property>
+
+    <!-- Cross-Origin Settings for Web UI access -->
+    <property>
+        <name>hadoop.http.cross-origin.enabled</name>
+        <value>true</value>
+    </property>
+</configuration>

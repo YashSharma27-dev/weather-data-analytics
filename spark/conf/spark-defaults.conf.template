@@ -1,0 +1,11 @@
+# Default Spark Configurations
+# Place in $SPARK_HOME/conf/spark-defaults.conf
+
+spark.master                     spark://master:7077
+spark.app.name                   WeatherBigDataAnalytics
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://master:9000/weather/spark-events
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.driver.memory              2g
+spark.executor.memory            2g
+spark.executor.cores             2
